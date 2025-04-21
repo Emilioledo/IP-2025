@@ -123,3 +123,11 @@ multiplosDeN n (x:xs)
   | otherwise    = multiplosDeN n xs
  
 
+-- 4)
+-- ["a", "", "", "a"]
+-- x = "a" == "" = "a" == ""
+-- sacarBlancosRepetidos :: [Char] -> [Char]
+-- sacarBlancosRepetidos [] = []
+-- sacarBlancosRepetidos (x: y: xs) | x == "" && y == "" = xs 
+--                                  | otherwise = sacarBlancosRepetidos xs
+
