@@ -69,3 +69,6 @@ dineroEnStock ((ns, q): xs) xy = ((buscarPrecio ns xy) * fromIntegral q) + diner
 -- aplicarOferta [] [] = []
 -- aplicarOferta ((ns, q): xs) xy | q < 10 = (ns, ((buscarPrecio ns xy) * 0.80)): aplicarOferta xs xy
 --                                | otherwise = aplicarOferta xs xy
+
+
+-- Sopa de Letras

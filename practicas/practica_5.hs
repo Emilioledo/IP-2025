@@ -131,3 +131,34 @@ multiplosDeN n (x:xs)
 -- sacarBlancosRepetidos (x: y: xs) | x == "" && y == "" = xs 
 --                                  | otherwise = sacarBlancosRepetidos xs
 
+-- 7)
+-- tipo MapaDeLockers -> Secuencias de locker
+type Identificacion = Integer
+type Ubicacion = [Char]
+type Estado = (Disponibilidad, Ubicacion)
+type Locker = (Identificacion, Estado) -- ("nombre", (True/False, "ubicación"))
+type MapaDeLockers = [Locker]
+type Disponibilidad = Bool
+
+existeLocker :: Identificacion -> MapaDeLockers -> Bool
+existeLocker _ [] = False
+existeLocker n ((x, s): xs) | n == x = True
+                            | otherwise = existeLocker n xs
+
+
+ubicacionDellocker :: Identificacion -> MapaDeLockers -> Ubicacion 
+ubicacionDellocker _ [] = []
+ubicacionDellocker n ((x, (d, u)): xs) | n == x = u
+                                       | otherwise = ubicacionDellocker n xs
+
+
+estaDisponibleElLocker :: Identificacion -> MapaDeLockers -> Bool
+estaDisponibleElLocker _ [] = False
+estaDisponibleElLocker identificador ((id, (disp, ubi)): xs) | identificador == id = disp
+                                                             | otherwise = estaDisponibleElLocker identificador xs
+
+
+ocuparLocker :: Identificacion -> MapaDeLockers -> MapaDeLockers
+ocuparLocker _ [] = []
+ocuparLocker identificador ((id, (disp, ubi)): xs) | identificador == id && disp == False = (id, (True, ubi)) : ocuparLocker identificador xs
+                                                   | otherwise = (id, (disp, ubi)) : ocuparLocker identificador xs
