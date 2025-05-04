@@ -71,4 +71,92 @@ dineroEnStock ((ns, q): xs) xy = ((buscarPrecio ns xy) * fromIntegral q) + diner
 --                                | otherwise = aplicarOferta xs xy
 
 
--- Sopa de Letras
+-- Sopa de Números
+-- tablero n x m donde n && m > 0. En cada celda hay un entero positivo. 
+-- Cada posicion -> (i, j) -> (Fila, columna)
+-- Camino se puede dar solamente -> de a 1 hacia derecha o hacia abajo.
+-- Fila = seq (Z) -> [13, 12, 6, 4]
+-- Tablero = seq (Fila) -> [[13, 12, 6, 4], [1, 1, 32, 25]] ...
+-- Posicion = Z x Z (Fila columna)
+-- Camino = seq (Posición)
+
+-- type Tablero = [[Integer]]
+
+
+-- ((13, 12, 6, 4), (1, 1, 32, 25))
+-- x = (13, 12, 6, 4) : xs = (1, 1, 32, 25) 
+-- x = 13 -> y = 12 -> xy= (6, 4)
+-- 13 > 12 -> entonces 13 -> 13 > 6 -> entonces 13 -> 13 > 4 -> entonces 13
+
+-- maximo :: Tablero -> Integer
+-- maximo [] = 0
+-- maximo ((x: y: xy): xs) | x > y = 
+--                         | otherwise = maximo (xy:xs)  
+
+
+
+-- Perfectos amigos
+-- numeros perfectos -> suma de los divisores de n es igual a n -> ej 6 es -> 3 + 2 + 1 = 6
+-- numeros amigos -> n distintos -> si la suma de los divisores de cada uno es igual al otro n 
+-- 220 son 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 y 110 que sumados dan 284 y los divisores propios de 284 son 1, 2 , 4, 71, 142 que sumados dan 220. 
+
+
+-- 220 
+-- raiz cuadrada 220 = 14 
+-- se empieza de 1 al 14 buscando los divisores. Si el resto es 0, se toma el resultado como divisor y el divisor propiamente dicho
+-- por ejemplo 220 / 14 = 55 -> 55 y 4
+
+-- Otra solucion
+--  i=1 hasta n haciendo por cada mod n (i+1) sea rta 0.  
+-- n = 6
+-- mod 6 1 -> : 1 -> mod 6 2 -> : 2 [1] -> mod 6 : 3 -> 3 :  [1, 2] -> mod 6 4 != 0 -> 
+
+encontrarDivisor :: Integer -> Integer -> [Integer]
+encontrarDivisor n d 
+  | d >= n = []
+  | mod n d == 0 = d : encontrarDivisor n (d + 1)
+  | otherwise = encontrarDivisor n (d + 1)
+
+divisoresPropios :: Integer -> [Integer]
+divisoresPropios n = encontrarDivisor n 1
+
+
+-- Son amigos
+-- n = 220 p = 284 
+-- n -> divisores -> sumar divisores -> n es igual a la suma de los divisores? 
+-- p -> divisores -> sumar divisores -> p es igual a la suma de los divisores?
+-- n && p si cumplen las dos condiciones -> True
+-- otherwise = False
+
+sonAmigos :: Integer -> Integer -> Bool
+sonAmigos n p | p == sumarDivisores ((divisoresPropios n)) && n == sumarDivisores ((divisoresPropios p)) = True
+              | otherwise = False
+
+
+-- [1, 2, 3]
+-- 1 + [2, 3]
+-- 1 + 2 + [3]
+-- 1 + 2 + 3 = 6
+sumarDivisores :: [Integer] -> Integer
+sumarDivisores [] = 0
+sumarDivisores (x: xs) = x + sumarDivisores xs 
+
+
+
+-- 28
+
+losPrimerosNPerfectos :: Integer -> Integer -> [Integer]
+losPrimerosNPerfectos n p 
+  | n == 0 = []
+  | sumarDivisores (divisoresPropios p) == p = losPrimerosN n 1 (divisoresPropios p)
+  | otherwise = []
+
+
+
+-- n = 2 xs = [1, 2, 3]
+-- []
+losPrimerosN :: Integer -> Integer -> [Integer] -> [Integer]
+losPrimerosN n p [] = []
+losPrimerosN n p (x:xs) 
+  | p > n = [] 
+  | otherwise = x : losPrimerosN n (p + 1) xs
