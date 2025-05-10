@@ -54,6 +54,18 @@ cuantasVecesHayQueCodificar c (pElemFrase: frase) mapeo  | hayQueCodificar c map
 --  asegura: {res = c donde c es el caracter tal que cuantasVecesHayQueCodificar(c, frase, mapeo) es mayor a cualquier otro caracter perteneciente a frase}
 --  asegura: {Si existen más de un caracter c que cumple la condición anterior, devuelve el que aparece primero en frase }
 
+-- ['a', 'b', 'c', 'c'] -> (('a', 'b'), ('c', 'x'))
+-- hayQueCodificar 'a' mapeo == True -> 'a' -> ('a', buscarCantidad 'a' mapeo -> n) : calcularRestante 
+-- hayQueCodificar 'b' mapeo == False -> laQueMasHayQueCodificar ['c', 'c'] mapeo
+
+buscarCantidad :: Char -> [Char] -> Integer
+buscarCantidad _ [] = 0
+buscarCantidad n (x: xs) | n == x = 1 + buscarCantidad n xs
+                         | otherwise = 0 + buscarCantidad n xs
+
+-- laQueMasHayQueCodificar :: [Char] -> Mapeo -> Char
+-- laQueMasHayQueCodificar [] [] = 
+-- laQueMasHayQueCodificar (primerElemFrase: frase) mapeo | hayQueCodificar primerElemFrase mapeo == True = (primerElemFrase, buscarCantidad primerElemFrase frase) : 
 
 
 -- Ejercicio 4 (3 puntos)

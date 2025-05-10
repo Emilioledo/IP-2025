@@ -145,13 +145,6 @@ sumarDivisores (x: xs) = x + sumarDivisores xs
 
 -- 28
 
-losPrimerosNPerfectos :: Integer -> Integer -> [Integer]
-losPrimerosNPerfectos n p 
-  | n == 0 = []
-  | sumarDivisores (divisoresPropios p) == p = losPrimerosN n 1 (divisoresPropios p)
-  | otherwise = []
-
-
 
 -- n = 2 xs = [1, 2, 3]
 -- []
