@@ -59,6 +59,51 @@ def es_nombre_largo(nombre: str) -> bool:
 def es_bisiesto(anio: int) -> bool:
     return anio % 400 == 0 or (anio % 4 == 0 and anio % 100 != 0)
 
+# 4.1
+# 3kg por cada cm hasta 3 metros
+# 2kg por cada cm mas de 3 metros
+# rango pino -> 400 a 1000 kg
+
+# 5.1
+def devolver_el_doble_si_par(num: int) -> int:
+    if (num % 2 == 0):
+        return num * 2
+    else:
+        return num
+
+# 5.4
+def lindo_nombre(nombre: str) -> str:
+    letras: int = 0
+    for _ in nombre: 
+        letras += 1
+
+    if (letras >= 5):
+        return 'Tu nombre tiene muchas letras!'
+    else:
+        return 'Tu nombre tiene menos de 5 caracteres'
+
+# 6.1
+def imprimir_uno_al_diez():
+    i: int = 0
+    while (i < 10):
+        i = i + 1
+        print(i)
+
+# 6.2
+def imprimir_pares_entre_10_40():
+    i: int = 10
+    while (i < 40):
+        i = i + 1
+        if (i % 2 == 0):
+            print(i)
+
+# 6.4
+def cuenta_regresiva(i: int):
+    while (i > 0):
+        print(i)
+        i = i - 1
+
+
 def main ():
     # 1
     # imprimir_hola_mundo()
@@ -79,6 +124,16 @@ def main ():
     # print(ambos_son_0(0, 0))
     # print(es_nombre_largo('Emilio'))
     # print(es_bisiesto(2001))
+
+    # 5
+    # print(devolver_el_doble_si_par(2))
+    # print(lindo_nombre('Emilio'))
+
+    #6
+    # imprimir_uno_al_diez()
+    # imprimir_pares_entre_10_40()
+    # cuenta_regresiva(10)
+
     return
 
 main()
