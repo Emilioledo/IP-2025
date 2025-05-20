@@ -42,3 +42,5 @@ hayColumnaSumaCero (xs: resto) =
 
 -- primerosKNumerosAritmeticos 10
 -- debe devolver [1,3,5,6,7,11,13,14,15,17]
+
+
