@@ -132,25 +132,89 @@ def resultado_materia(n: list[int]) -> int:
     else:
         return 3
 
+# 4
+# Devolver saldo actual -> I = ingreso, R = retiro
+# [("I o R", monto)]
+def saldoActual(s: list[tuple[str, int]]) -> int:
+    saldo: int = 0
+    for tipo, monto in s:
+        if tipo == 'I':
+            saldo = saldo + monto
+        if tipo == 'R':
+            saldo = saldo - monto
+    return saldo
+
+# 5
+#  [[1, 2, 3], [4, 5], [], [2, 3, 4]]
+def pertenece_a_cada_uno_version_1(s: list[list[int]], e: int) -> list[bool]:
+    resultado: list[bool] = []
+    for fila in s:
+        lo_incluye = fila.__contains__(e)
+        resultado.append(lo_incluye)
+    print(resultado)
+
+# 6.1
+def es_matriz(s: list[list[int]]) -> bool:
+    elementos_fila: list[int] = []
+    for fila in s:
+        elementos_fila.append(len(fila))
+
+    primer_elemento_fila: int = elementos_fila[0]
+    for elemento in elementos_fila:
+        if elemento != primer_elemento_fila:
+            return False
+        else:
+            primer_elemento_fila = elemento
+    return True
+
+# 6.2
+def fila_ordenadas(s: list[list[int]]) -> list[bool]:
+    if(es_matriz(s)):
+        resultado: list[bool] = []
+        for fila in s:
+            if(ordenados(fila)):
+                resultado.append(True)
+            else:
+                resultado.append(False)
+        return resultado
+
+# 6.3
+def columna(s: list[list[int]], c: int) -> list[int]:
+    if(es_matriz(s)):
+        elemento = s[c - 1]
+        return elemento
+
+# 6.6
+def quien_gana_tateti(s: list[list[str]]) -> int:
+    return
 
 def main():
     # 1
-    print(pertenece([1, 2, 3], 3))
-    print(pertenece2([1, 2, 3], 4))
-    print(pertenece3([1, 2, 3], 4))
-    print(divide_a_todos([4, 8, 12], 4))
-    print(suma_total([4, 8, 12]))
-    print(maximo([4, 8, 12, 2, 128, 2]))
+    # print(pertenece([1, 2, 3], 3))
+    # print(pertenece2([1, 2, 3], 4))
+    # print(pertenece3([1, 2, 3], 4))
+    # print(divide_a_todos([4, 8, 12], 4))
+    # print(suma_total([4, 8, 12]))
+    # print(maximo([4, 8, 12, 2, 128, 2]))
     # print(minimo([4, 8, 12, 2, 128, 2]))
-    print(ordenados(([4, 5, 7, 7, 8])))
-    print(long_mayor_a_siete(['termo', 'gato', 'tener', 'jirafas', 'rinoceronte']))
-    print(cantidad_digitos_impares([57, 2383, 812, 246]))
+    # print(ordenados(([4, 5, 7, 7, 8])))
+    # print(long_mayor_a_siete(['termo', 'gato', 'tener', 'jirafas', 'rinoceronte']))
+    # print(cantidad_digitos_impares([57, 2383, 812, 246]))
 
     # 2
-    print(sin_vocales(['Hola como estas?']))
-    print(da_vuelta_str(['Hola como estas?', 'Querido amigo']))
+    # print(sin_vocales(['Hola como estas?']))
+    # print(da_vuelta_str(['Hola como estas?', 'Querido amigo']))
     # print(eliminar_repetidos(['Hola']))
 
     # 3
-    print(resultado_materia([7, 4, 6]))
+    # print(resultado_materia([7, 4, 6]))
+    # 4
+    # print(saldoActual([('I', 2000), ('R', 20), ('R', 1000), ('I', 300)]))
+    # 5
+    # pertenece_a_cada_uno_version_1([[1, 2, 3], [4, 5], [], [2, 3, 4]], 4)
+    # 6
+    # print(es_matriz([[1, 2, 3], [3, 4, 3], [1, 2, 3]]))
+    # print(fila_ordenadas([[1, 2, 3], [3, 4, 3], [1, 2, 3]]))
+    columna([[1, 2, 3], [3, 4, 3], [1, 2, 3]], 3)
+
 main()
